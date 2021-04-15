@@ -1,0 +1,55 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = '0.8.2'
+}
+task jacocoTestReport(type: JacocoReport) {
+    def classExcludes = ['**/R*.class',
+                         '**/*Factory*.class',
+                         '**/*$InjectAdapter*.class',
+                         '**/*$ModuleAdapter*.class',
+                         '**/*$ViewInjector*.class']
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+//    sourceDirectories.from(files())
+//    classDirectories.from(files())
+//    def a = files()
+//    def b = files()
+//    project.rootProject.allprojects.each {
+//        a += it.projectDir.absolutePath + '/src/main/java'
+//        def path = it.buildDir.absolutePath + '/intermediates/javac/debug/classes/'
+//        b += fileTree(dir: path, excludes: classExcludes, includes: ['**/*.class'])
+//    }
+//    print(b)
+//    sourceDirectories.from(a)
+//    classDirectories.from(b)
+    sourceDirectories.from(
+            files("/Users/happyelements/IdeaProjects/my-app/app/src/main/java"),
+            files("/Users/happyelements/IdeaProjects/my-app/mylibrary/src/main/java")
+    )
+    classDirectories.from(
+            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/app/build/intermediates/javac/debug/classes/",excludes: classExcludes),
+            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/mylibrary/build/intermediates/javac/debug/classes/",excludes: classExcludes)
+    )
+//    classDirectories = fileTree(
+//            dir: '/Users/happyelements/IdeaProjects/mylibrary/build/intermediates/javac/debug/classes',
+//            excludes: ['**/R*.class',
+//                       '**/*$InjectAdapter.class',
+//                       '**/*$ModuleAdapter.class',
+//                       '**/*$ViewInjector*.class'
+//            ])
+//    sourceDirectories = files(coverageSourceDirs)
+    executionData.from(files("/Users/happyelements/IdeaProjects/my-app/jacoco/coverage.ec"))
+
+    doFirst {
+        fileTree(dir: project.rootDir.absolutePath, includes: ['**/classes/**/*.class']).each { File file ->
+            if (file.name.contains('$$')) {
+                file.renameTo(file.path.replace('$$', '$'))
+            }
+        }
+    }
+}

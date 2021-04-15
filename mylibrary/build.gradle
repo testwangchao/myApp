@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+            testCoverageEnabled = true
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+//task jacocoTestReport(type: JacocoReport) {
+//    def classExcludes = ['**/R*.class',
+//                         '**/*Factory*.class',
+//                         '**/*$InjectAdapter*.class',
+//                         '**/*$ModuleAdapter*.class',
+//                         '**/*$ViewInjector*.class']
+//    group = "Reporting"
+//    description = "Generate Jacoco coverage reports after running tests."
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+////    sourceDirectories.from(files())
+////    classDirectories.from(files())
+//    def a = files()
+//    def b = files()
+////    println project.rootProject.allprojects
+////    project.rootProject.allprojects.each {
+////        println it.projectDir.absolutePath + '/src/main/java'
+////    }
+//    project.rootProject.allprojects.each {
+//        println it.projectDir.absolutePath + '/src/main/java'
+//        a += files(it.projectDir.absolutePath + '/src/main/java')
+////        sourceDirectories.from(files(it.projectDir.absolutePath + '/src/main/java'))
+//        def path = it.buildDir.absolutePath + '/intermediates/javac/debug/classes/'
+//        b += fileTree(dir: path, excludes: classExcludes, includes: ['**/*.class'])
+////        classDirectories.from(fileTree(dir: path, excludes: classExcludes, includes: ['**/*.class']))
+//    }
+//    sourceDirectories.from(a)
+//    classDirectories.from(b)
+//    classDirectories = fileTree(
+//            dir: '/Users/happyelements/IdeaProjects/mylibrary/build/intermediates/javac/debug/classes',
+//            excludes: ['**/R*.class',
+//                       '**/*$InjectAdapter.class',
+//                       '**/*$ModuleAdapter.class',
+//                       '**/*$ViewInjector*.class'
+//            ])
+//    sourceDirectories = files(coverageSourceDirs)
+//    executionData fileTree("./jacoco/coverage.ec")
+//    println "====$buildDir/coverage.ec===="
+//
+//    doFirst {
+//        fileTree(dir: project.rootDir.absolutePath, includes: ['**/classes/**/*.class']).each { File file ->
+//            if (file.name.contains('$$')) {
+//                file.renameTo(file.path.replace('$$', '$'))
+//            }
+//        }
+//    }
+//}
