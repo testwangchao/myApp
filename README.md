@@ -261,7 +261,7 @@
 
 5. 在idea右侧gradle，选择app>Tasks>install>installDebug，安装demo到设备上
 
-   ![image-20210416164016465](/Users/happyelements/Library/Application Support/typora-user-images/image-20210416164016465.png)
+   ![](./images/2.png)
 
 6. 命令行执行```adb shell am instrument com.example.myfirstapp/com.example.test.JacocoInstrumentation```启动应用
 
@@ -269,14 +269,14 @@
 
 8. 查看设备目录```/data/data/com.example.myfirstapp/file```下是否有```coverage.ec```文件
 
-   ![image-20210416164646538](/Users/happyelements/Library/Application Support/typora-user-images/image-20210416164646538.png)
+   ![](./images/3.png)
 
 9. 将```coverage.ec```文件存储到项目目录下```jacoco``文件夹下
 
 10. 执行
 
-    ![image-20210416165430699](/Users/happyelements/Library/Application Support/typora-user-images/image-20210416165430699.png)
+    ![](./images/4.png)
 
 11. 根目录查看build是否生成报告
 
-    ![image-20210416165508227](/Users/happyelements/Library/Application Support/typora-user-images/image-20210416165508227.png)
+    ![](./images/5.png)
