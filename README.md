@@ -6,7 +6,7 @@
 
 1. app下添加test文件夹
 
-   ![image-20210416144153869](/Users/happyelements/Library/Application Support/typora-user-images/image-20210416144153869.png)
+   ![](./images/1.png)
 
    FinishListener.class
 
