@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DisplayMessageActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">My First App</a> &gt; <a href="index.source.html" class="el_package">com.example.myfirstapp</a> &gt; <span class="el_source">DisplayMessageActivity.java</span></div><h1>DisplayMessageActivity.java</h1><pre class="source lang-java linenums">package com.example.myfirstapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import com.example.mylibrary.User;
+import com.example.mylibrary.User2;
+
+<span class="fc" id="L11">public class DisplayMessageActivity extends AppCompatActivity {</span>
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="fc" id="L15">        super.onCreate(savedInstanceState);</span>
+<span class="fc" id="L16">        setContentView(R.layout.activity_display_message);</span>
+<span class="fc" id="L17">        Intent intent =  getIntent();</span>
+<span class="fc" id="L18">        String msg = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);</span>
+
+<span class="fc" id="L20">        TextView textView = findViewById(R.id.textView);</span>
+<span class="fc" id="L21">        User user = new User();</span>
+<span class="fc" id="L22">        user.say();</span>
+<span class="fc" id="L23">        User2 user2 = new User2();</span>
+<span class="fc" id="L24">        user2.aaaaa();</span>
+<span class="fc" id="L25">        textView.setText(msg);</span>
+
+<span class="fc" id="L27">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -15,34 +15,29 @@ task jacocoTestReport(type: JacocoReport) {
         xml.enabled = true
         html.enabled = true
     }
-//    sourceDirectories.from(files())
-//    classDirectories.from(files())
-//    def a = files()
-//    def b = files()
-//    project.rootProject.allprojects.each {
-//        a += it.projectDir.absolutePath + '/src/main/java'
-//        def path = it.buildDir.absolutePath + '/intermediates/javac/debug/classes/'
-//        b += fileTree(dir: path, excludes: classExcludes, includes: ['**/*.class'])
-//    }
-//    print(b)
-//    sourceDirectories.from(a)
-//    classDirectories.from(b)
-    sourceDirectories.from(
-            files("/Users/happyelements/IdeaProjects/my-app/app/src/main/java"),
-            files("/Users/happyelements/IdeaProjects/my-app/mylibrary/src/main/java")
-    )
-    classDirectories.from(
-            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/app/build/intermediates/javac/debug/classes/",excludes: classExcludes),
-            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/mylibrary/build/intermediates/javac/debug/classes/",excludes: classExcludes)
-    )
-//    classDirectories = fileTree(
-//            dir: '/Users/happyelements/IdeaProjects/mylibrary/build/intermediates/javac/debug/classes',
-//            excludes: ['**/R*.class',
-//                       '**/*$InjectAdapter.class',
-//                       '**/*$ModuleAdapter.class',
-//                       '**/*$ViewInjector*.class'
-//            ])
-//    sourceDirectories = files(coverageSourceDirs)
+
+    def a = files()
+    def b = files()
+    project.rootProject.allprojects.each {
+        a += files(it.projectDir.absolutePath + '/src/main/java')
+        def path = it.buildDir.absolutePath + '/intermediates/javac/debug/classes/'
+        b += fileTree(dir: path, excludes: classExcludes, includes: ['**/*.class'])
+    }
+    sourceDirectories.from(files(a))
+    classDirectories.from(files(b))
+    /**
+     * 以下是比较笨的方法
+     * */
+// =================================================================================================
+//    sourceDirectories.from(
+//            files("/Users/happyelements/IdeaProjects/my-app/app/src/main/java"),
+//            files("/Users/happyelements/IdeaProjects/my-app/mylibrary/src/main/java")
+//    )
+//    classDirectories.from(
+//            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/app/build/intermediates/javac/debug/classes/",excludes: classExcludes),
+//            fileTree(dir: "/Users/happyelements/IdeaProjects/my-app/mylibrary/build/intermediates/javac/debug/classes/",excludes: classExcludes)
+//    )
+// =================================================================================================
     executionData.from(files("/Users/happyelements/IdeaProjects/my-app/jacoco/coverage.ec"))
 
     doFirst {
